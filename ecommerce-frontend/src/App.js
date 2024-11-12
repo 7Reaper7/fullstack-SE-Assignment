@@ -6,7 +6,6 @@ import Login from './components/Login';
 import ProductList from './components/ProductList';
 
 function App() {
-    // Check if the user is logged in (using a token in localStorage)
     const isLoggedIn = !!localStorage.getItem('token');
 
     return (

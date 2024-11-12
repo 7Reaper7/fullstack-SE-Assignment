@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './ProductList.css'; // Custom styles for additional customization
+import './ProductList.css';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 function ProductList() {

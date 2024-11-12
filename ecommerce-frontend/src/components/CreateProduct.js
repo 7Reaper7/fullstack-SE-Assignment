@@ -26,7 +26,6 @@ function CreateProduct() {
         .then(response => response.json())
         .then(data => {
             console.log('Product created:', data);
-            // Optionally clear the form or show success message
             setProduct({ name: '', price: '', description: '', category: '' });
         })
         .catch(err => console.error('Error creating product:', err));

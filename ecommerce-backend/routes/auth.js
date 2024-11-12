@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const router = express.Router();
 
-// Signup route
 router.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -12,7 +11,6 @@ router.post('/signup', async (req, res) => {
     res.status(201).json({ message: 'User created successfully' });
 });
 
-// Login route
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
