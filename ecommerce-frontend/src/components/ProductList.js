@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './ProductList.css';
+import './ProductList.css'; // Custom styles for additional customization
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 function ProductList() {
     const [products, setProducts] = useState([]);
@@ -11,30 +12,28 @@ function ProductList() {
             .catch(err => console.error('Error fetching products:', err));
     }, []);
 
-    const deleteProduct = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
-            method: 'DELETE',
-        })
-        .then(() => setProducts(products.filter(product => product._id !== id)))
-        .catch(err => console.error('Error deleting product:', err));
-    };
-
     return (
-        <div className="product-list">
-            <h2>Product List</h2>
-            {products.length > 0 ? (
-                products.map(product => (
-                    <div className="product" key={product._id}>
-                        <h3>{product.name}</h3>
-                        <p>{product.description}</p>
-                        <p><strong>Price:</strong> ${product.price}</p>
-                        <button onClick={() => deleteProduct(product._id)}>Delete</button>
-                    </div>
-                ))
-            ) : (
-                <p>No products available</p>
-            )}
-        </div>
+        <Container className="my-5">
+            <h2 className="text-center mb-4">Product List</h2>
+            <Row>
+                {products.length > 0 ? (
+                    products.map(product => (
+                        <Col md={4} sm={6} xs={12} key={product._id} className="mb-4">
+                            <Card>
+                                <Card.Body>
+                                    <Card.Title>{product.name}</Card.Title>
+                                    <Card.Text>{product.description}</Card.Text>
+                                    <Card.Text><strong>Price:</strong> ${product.price}</Card.Text>
+                                    <Button variant="danger">Delete</Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))
+                ) : (
+                    <p className="text-center">No products available</p>
+                )}
+            </Row>
+        </Container>
     );
 }
 
